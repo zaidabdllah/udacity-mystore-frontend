@@ -1,0 +1,23 @@
+.navbar {
+  min-height: 80px;
+}
+
+.user-icon {
+  font-size: 2rem;
+}
+
+nav {
+  background-color: #0a3b78;
+}
+
+.logout-btn {
+  line-height: 1;
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+.logout-btn:hover,
+.logout-btn:focus {
+  opacity: 1;
+  color: #fff;
+}

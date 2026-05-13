@@ -4,11 +4,16 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Navbar } from './components/navbar/navbar';
+import { AuthModal } from './components/auth-modal/auth-modal';
+import { FormsModule } from '@angular/forms';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
-  declarations: [App],
-  imports: [BrowserModule, AppRoutingModule, NgbModule],
-  providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
+  declarations: [App, Navbar, AuthModal],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
+  providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay()), provideHttpClient()],
   bootstrap: [App],
 })
+
 export class AppModule {}

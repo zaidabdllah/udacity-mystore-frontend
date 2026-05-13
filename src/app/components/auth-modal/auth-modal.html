@@ -1,0 +1,124 @@
+<div class="modal-header auth-header">
+  <div>
+    <h4 class="modal-title mb-0">Welcome to MyStore</h4>
+    <small>Sign in or create a new account</small>
+  </div>
+
+  <button type="button" class="btn-close btn-close-white" (click)="activeModal.dismiss()"></button>
+</div>
+
+<div class="modal-body p-4">
+
+  <div class="tab-content">
+
+    <!-- LOGIN -->
+    <div class="tab-pane fade show active" id="login" role="tabpanel">
+
+      <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)">
+
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+
+          <input type="text" name="username" ngModel required minlength="3" class="form-control"
+            placeholder="Enter username" (ngModelChange)="clearLoginError()">
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Password</label>
+
+          <input type="password" name="password" ngModel required minlength="6" class="form-control"
+            placeholder="Enter password" (ngModelChange)="clearLoginError()">
+        </div>
+
+        <div *ngIf="loginError()" class="alert alert-danger py-2 mb-3" role="alert" aria-live="polite">
+          {{ loginError() }}
+        </div>
+
+        <button type="submit" class="btn auth-btn w-100"
+          [disabled]="loginForm.invalid || isLoggingIn() || !!loginError()">
+          {{ isLoggingIn() ? 'Logging in...' : 'Login' }}
+        </button>
+
+      </form>
+
+    </div>
+
+    <!-- REGISTER -->
+    <div class="tab-pane fade" id="register" role="tabpanel">
+
+      <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm.value)">
+
+        <div class="row">
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">First Name</label>
+
+            <input type="text" name="first_name" ngModel required class="form-control" placeholder="First name"
+              (ngModelChange)="clearRegisterError()">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Last Name</label>
+
+            <input type="text" name="last_name" ngModel required class="form-control" placeholder="Last name"
+              (ngModelChange)="clearRegisterError()">
+          </div>
+
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+
+          <input type="text" name="username" ngModel required minlength="3" class="form-control"
+            placeholder="Choose username" (ngModelChange)="clearRegisterError()">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+
+          <input type="password" name="password" ngModel #registerPassword="ngModel" required minlength="6" class="form-control"
+            placeholder="Password" (ngModelChange)="clearRegisterError()">
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Repeat Password</label>
+
+          <input type="password" name="repassword" ngModel #registerRepassword="ngModel" required minlength="6" class="form-control"
+            [class.is-invalid]="!!registerRepassword.value && registerPassword.value !== registerRepassword.value"
+            placeholder="Repeat password" (ngModelChange)="clearRegisterError()">
+
+          <div *ngIf="!!registerRepassword.value && registerPassword.value !== registerRepassword.value"
+            class="invalid-feedback">
+            Passwords do not match.
+          </div>
+        </div>
+
+        <div *ngIf="registerError()" class="alert alert-danger py-2 mb-3" role="alert" aria-live="polite">
+          {{ registerError() }}
+        </div>
+
+        <button type="submit" class="btn auth-btn w-100"
+          [disabled]="registerForm.invalid || (!!registerRepassword.value && registerPassword.value !== registerRepassword.value) || isRegistering() || !!registerError()">
+          {{ isRegistering() ? 'Creating account...' : 'Create Account' }}
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <!-- SWITCH -->
+  <div class="auth-switch mt-4" role="tablist">
+
+    <button class="auth-tab active" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab">
+      Login
+    </button>
+
+    <button class="auth-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab">
+      Register
+    </button>
+
+  </div>
+
+</div>

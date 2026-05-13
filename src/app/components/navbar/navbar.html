@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark px-4">
+
+  <a class="navbar-brand fw-bold fs-3" routerLink="/">
+    MyStore
+  </a>
+
+  <div class="ms-auto d-flex align-items-center gap-4">
+
+    <ng-container *ngIf="currentUser() as user; else guestAuth">
+      <div class="text-white">
+        <div class="d-flex align-items-center gap-2">
+
+          <i class="bi bi-person-circle fs-2"></i>
+
+          <div class="d-flex flex-column">
+            <small>Welcome</small>
+            <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+          </div>
+
+          <button type="button" class="btn btn-link logout-btn text-white p-0 ms-2" aria-label="Logout" title="Logout"
+            (click)="logout()">
+            <i class="bi bi-box-arrow-right fs-4"></i>
+          </button>
+
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #guestAuth>
+      <div class="text-white" role="button" (click)="openAuthModal()">
+        <div class="d-flex align-items-center gap-2">
+
+          <i class="bi bi-person-circle fs-2"></i>
+
+          <div class="d-flex flex-column">
+            <small>Welcome</small>
+            <strong>Sign In / Register</strong>
+          </div>
+
+        </div>
+      </div>
+    </ng-template>
+
+    <a routerLink="/cart" class="position-relative text-white text-decoration-none">
+
+      <i class="bi bi-cart3 fs-3"></i>
+
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        0
+      </span>
+
+    </a>
+
+  </div>
+
+</nav>

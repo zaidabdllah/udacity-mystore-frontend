@@ -1,0 +1,52 @@
+.auth-header {
+  background: #003b82;
+  color: #fff;
+  border-bottom: none;
+}
+
+.auth-header small {
+  color: #dbe8ff;
+}
+
+.form-control:focus {
+  border-color: #003b82;
+  box-shadow: 0 0 0 0.2rem rgba(0, 59, 130, 0.15);
+}
+
+.auth-btn {
+  background: #003b82;
+  color: #fff;
+  font-weight: 600;
+}
+
+.auth-btn:hover {
+  background: #002f66;
+  color: #fff;
+}
+
+.auth-btn:disabled {
+  background: #8aa6c8;
+  border-color: #8aa6c8;
+}
+
+.auth-switch {
+  display: flex;
+  background: #eef4ff;
+  border-radius: 14px;
+  padding: 6px;
+}
+
+.auth-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #003b82;
+}
+
+.auth-tab.active {
+  background: #003b82;
+  color: #fff;
+}
