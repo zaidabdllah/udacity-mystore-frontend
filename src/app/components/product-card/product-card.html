@@ -1,0 +1,22 @@
+<div class="product-card h-100">
+  <a [routerLink]="['/products', product.id]" class="text-decoration-none">
+    <div class="product-img-wrap">
+      <img
+        [src]="product.thumbnail || 'https://placehold.co/300x450?text=No+Image'"
+        [alt]="product.name"
+        class="product-img"
+      >
+    </div>
+
+    <div class="product-body">
+      <h5 class="product-name">{{ product.name }}</h5>
+      <p class="product-price">${{ product.price }}</p>
+    </div>
+  </a>
+
+  <div class="px-3 pb-3 product-body">
+    <button class="btn add-btn">
+      Add to Cart
+    </button>
+  </div>
+</div>

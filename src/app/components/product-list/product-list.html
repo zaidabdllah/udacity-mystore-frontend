@@ -1,0 +1,16 @@
+<div class="container py-5">
+
+  <div *ngIf="isLoading()" class="text-center py-5">
+    Loading products...
+  </div>
+
+  <div *ngIf="errorMessage()" class="alert alert-danger">
+    {{ errorMessage() }}
+  </div>
+
+  <div class="row g-4" *ngIf="!isLoading() && !errorMessage()">
+    <div class="col-12 col-md-6 col-lg-4" *ngFor="let product of products">
+      <app-product-card [product]="product"></app-product-card>
+    </div>
+  </div>
+</div>

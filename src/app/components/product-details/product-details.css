@@ -1,0 +1,45 @@
+.details-img-wrap {
+  background: #f4f7fb;
+  border-radius: 18px;
+  padding: 24px;
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.details-img {
+  max-width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+}
+
+.details-price {
+  color: #003b82;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.add-btn {
+  background: #003b82;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.add-btn:hover {
+  background: #002f66;
+  color: #fff;
+}
+
+.details-btn {
+  background: #003b82;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 28px;
+}
+
+.details-btn:hover {
+  background: #002f66;
+  color: #fff;
+}

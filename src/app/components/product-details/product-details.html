@@ -1,0 +1,41 @@
+<div class="container py-5">
+  <div *ngIf="isLoading()" class="text-center py-5">
+    Loading product...
+  </div>
+
+  <div *ngIf="errorMessage()" class="alert alert-danger">
+    {{ errorMessage() }}
+  </div>
+
+  <div *ngIf="product" class="row align-items-center g-5">
+    <div class="col-md-6">
+      <div class="details-img-wrap">
+        <img
+          [src]="product.thumbnail || 'https://placehold.co/300x450?text=No+Image'"
+          [alt]="product.name"
+          class="details-img"
+        >
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <h1 class="fw-bold">{{ product.name }}</h1>
+
+      <p class="details-price">
+        ${{ product.price }}
+      </p>
+
+      <p class="text-muted">
+        {{ product.description }}
+      </p>
+
+      <button class="btn add-btn">
+        Add to Cart
+      </button>
+
+      <a routerLink="/" class="btn btn-outline-secondary ms-2">
+        Back to Products
+      </a>
+    </div>
+  </div>
+</div>

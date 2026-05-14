@@ -8,12 +8,18 @@ import { Navbar } from './components/navbar/navbar';
 import { AuthModal } from './components/auth-modal/auth-modal';
 import { FormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
+import { ProductList } from './components/product-list/product-list';
+import { ProductCard } from './components/product-card/product-card';
+import { ProductDetails } from './components/product-details/product-details';
 
 @NgModule({
-  declarations: [App, Navbar, AuthModal],
+  declarations: [App, Navbar, AuthModal, ProductList, ProductCard, ProductDetails],
   imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
-  providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay()), provideHttpClient()],
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(),
+  ],
   bootstrap: [App],
 })
-
 export class AppModule {}
