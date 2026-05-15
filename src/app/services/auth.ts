@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -87,6 +87,17 @@ export class Auth {
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
+
+
+getAuthHeaders(): { headers: HttpHeaders } {
+  const token = this.getToken();
+
+  return {
+    headers: new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    })
+  };
+}
 
   private hasStorage(): boolean {
     return typeof localStorage !== 'undefined';
