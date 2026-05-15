@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { finalize, Observable } from 'rxjs';
+import { AuthModal } from '../auth-modal/auth-modal';
+import { Auth } from '../../services/auth';
 import { CartItemResponse, CartServices } from '../../services/cart';
 import { ProductShape } from '../../services/product';
 
@@ -17,13 +20,19 @@ export class AddToCart {
   isAnimating = false;
   quantityOptions = Array.from({ length: 20 }, (_, index) => index + 1);
 
-  constructor(private cartServices: CartServices) {}
+  constructor(
+    private cartServices: CartServices,
+    private auth: Auth,
+    private modalService: NgbModal
+  ) {}
 
   get quantity(): number {
     return this.product ? this.cartServices.getProductQuantity(this.product.id) : 0;
   }
 
   addOne(): void {
+    if (this.shouldOpenAuthModal()) return;
+
     const request = this.quantity
       ? this.cartServices.editCartItem(this.product, this.quantity + 1)
       : this.cartServices.addtoCart(this.product, 1);
@@ -32,6 +41,8 @@ export class AddToCart {
   }
 
   removeOne(): void {
+    if (this.shouldOpenAuthModal()) return;
+
     const request = this.quantity <= 1
       ? this.cartServices.deleteCartItem(this.product)
       : this.cartServices.editCartItem(this.product, this.quantity - 1);
@@ -40,6 +51,7 @@ export class AddToCart {
   }
 
   setQuantity(quantity: number): void {
+    if (this.shouldOpenAuthModal()) return;
     if (quantity === this.quantity) return;
     this.updateCart(this.cartServices.editCartItem(this.product, quantity), quantity);
   }
@@ -64,5 +76,16 @@ export class AddToCart {
     setTimeout(() => {
       this.isAnimating = true;
     });
+  }
+
+  private shouldOpenAuthModal(): boolean {
+    if (this.auth.currentUser()) return false;
+
+    this.modalService.open(AuthModal, {
+      centered: true,
+      size: 'md'
+    });
+
+    return true;
   }
 }

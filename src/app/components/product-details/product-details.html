@@ -19,6 +19,11 @@
     </div>
 
     <div class="col-md-6">
+      <span *ngIf="product.category" class="category-badge">
+        <i class="bi bi-tag-fill"></i>
+        {{ product.category }}
+      </span>
+
       <h1 class="fw-bold">{{ product.name }}</h1>
 
       <p class="details-price">
