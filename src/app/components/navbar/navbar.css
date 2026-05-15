@@ -21,3 +21,10 @@ nav {
   opacity: 1;
   color: #fff;
 }
+
+.cart-btn {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  line-height: 1;
+}

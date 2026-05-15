@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './product-details.css',
 })
 
-export class ProductDetails {
+export class ProductDetails implements OnInit {
   product?: ProductShape;
   isLoading = signal(false);
   errorMessage = signal<string | null>(null);

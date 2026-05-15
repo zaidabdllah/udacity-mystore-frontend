@@ -3,6 +3,7 @@ import { Component, signal } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { finalize } from 'rxjs';
 import { Auth, LoginPayload, RegisterPayload } from '../../services/auth'
+import { CartServices } from '../../services/cart';
 
 @Component({
   selector: 'app-auth-modal',
@@ -16,7 +17,7 @@ export class AuthModal {
   registerError = signal<string | null>(null);
   isRegistering = signal(false);
 
-  constructor(public activeModal: NgbActiveModal, public authModal: Auth) {}
+  constructor(public activeModal: NgbActiveModal, public authModal: Auth, private cartServices: CartServices) {}
 
   onLogin(data: LoginPayload): void {
     this.loginError.set(null);
@@ -27,6 +28,7 @@ export class AuthModal {
       .subscribe({
         next: (response) => {
           this.authModal.saveSession(response);
+          this.cartServices.loadCart();
           this.activeModal.close();
         },
         error: (error: HttpErrorResponse) => {
@@ -58,6 +60,7 @@ export class AuthModal {
       .subscribe({
         next: (response) => {
           this.authModal.saveSession(response);
+          this.cartServices.loadCart();
           this.activeModal.close();
         },
         error: (error: HttpErrorResponse) => {

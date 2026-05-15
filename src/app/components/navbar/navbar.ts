@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthModal } from '../auth-modal/auth-modal'
 import { Auth, AuthUser } from '../../services/auth';
+import { Router } from '@angular/router';
+import { CartServices } from '../../services/cart';
 
 @Component({
   selector: 'app-navbar',
@@ -12,11 +14,15 @@ import { Auth, AuthUser } from '../../services/auth';
 
 export class Navbar {
 
-constructor(private modalService: NgbModal, public auth: Auth) {}
+  constructor(private modalService: NgbModal,
+    private auth: Auth,
+    private router: Router,
+    public cart: CartServices) { }
 
-currentUser(): AuthUser | null {
-  return this.auth.currentUser();
-}
+
+  currentUser(): AuthUser | null {
+    return this.auth.currentUser();
+  }
 
   openAuthModal(): void {
     this.modalService.open(AuthModal, {
@@ -26,7 +32,18 @@ currentUser(): AuthUser | null {
   }
 
   logout(): void {
+    this.router.navigate(['/']);
+    this.cart.clearCartState();
     this.auth.logout();
+  }
+
+  onCartClick(): void {
+    if (!this.currentUser()) {
+      this.openAuthModal();
+      return;
+    }
+
+    this.router.navigate(['/cart']);
   }
 
 }
