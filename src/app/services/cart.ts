@@ -154,6 +154,11 @@ export class CartServices {
     this.cart.set(null);
   }
 
+  getProductQuantity(productId: number): number {
+    const item = this.items().find(item => item.product_id === productId);
+    return Number(item?.quantity ?? 0);
+  }
+
   loadCart(): void {
     const user = this.authService.currentUser();
 
