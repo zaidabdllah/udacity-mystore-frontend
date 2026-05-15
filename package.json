@@ -1,6 +1,10 @@
 {
   "name": "udacity-mystore-frontend",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaidabdllah/udacity-mystore-frontend.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,6 +15,9 @@
   },
   "private": true,
   "packageManager": "npm@10.9.2",
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "@angular/common": "^21.2.0",
     "@angular/compiler": "^21.2.0",
