@@ -1,59 +1,161 @@
-# UdacityMystoreFrontend
+# MyStore
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.9.
+MyStore is a modern single-page e-commerce application built with Angular.
+The application allows users to browse products, view product details, manage a shopping cart, authenticate with login/register functionality, and complete the checkout process.
 
-## Development server
+This project was developed as part of the Udacity Frontend Nanodegree program.
 
-To start a local development server, run:
+---
+
+# Features
+
+* Product listing page
+* Product details page
+* Shopping cart with quantity management
+* Checkout form with validation
+* Order confirmation page
+* Login & Register modal
+* JWT authentication
+* Responsive design for desktop and mobile devices
+* REST API integration with backend services
+* Shared cart state across the application
+
+---
+
+# Technologies Used
+
+* Angular 21
+* TypeScript
+* Bootstrap 5
+* ng-bootstrap
+* Angular Router
+* Angular Forms
+* Angular HttpClient
+* Angular Signals (used selectively for cleaner state management)
+* RxJS
+
+> Note:
+> Although the Udacity course was originally based on Angular 12 concepts, this project was implemented using Angular 21 while still following the same core architecture and patterns from the course, including:
+>
+> * Non-standalone components
+> * Services
+> * Routing
+> * ngModel forms
+> * @Input / @Output
+> * EventEmitter
+> * Component hierarchy
+>
+> Angular Signals were used in some areas to improve maintainability and state management.
+
+---
+
+# Backend API
+
+This frontend application depends on the following backend API project:
+
+[udacity-storefront-backend](https://github.com/zaidabdllah/udacity-storefront-backend?utm_source=chatgpt.com)
+
+Please follow the backend repository setup instructions before running the frontend application.
+
+The API base URL is configured inside the Angular environment files.
+
+---
+
+# Installation
+
+```bash
+npm install
+```
+
+---
+
+# Run the Application
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The application will run on:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```text
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
+# Environment Configuration
+
+The backend API URL is configured in:
+
+```text
+src/environments/
 ```
 
-## Building
+Example:
 
-To build the project run:
-
-```bash
-ng build
+```ts
+export const environment = {
+  Backend_apiUrl: 'http://localhost:4000'
+};
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+# Main Routes
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+| Route           | Description        |
+| --------------- | ------------------ |
+| `/`             | Product list       |
+| `/products/:id` | Product details    |
+| `/cart`         | Shopping cart      |
+| `/success`      | Order confirmation |
 
-```bash
-ng test
+---
+
+# Project Structure
+
+```text
+src/app
+│
+├── components
+├── services
+├── guards
+├── environments
+└── app-routing
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## Product List
 
-```bash
-ng e2e
-```
+![Product List](./screenshots/product-list.png)
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## Product Details
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![Product Details](./screenshots/product-details.png)
+
+---
+
+## Shopping Cart
+
+![Shopping Cart](./screenshots/cart.png)
+
+---
+
+## Order Success Page
+
+![Order Success Page](./screenshots/success.png)
+
+---
+
+## Login / Register Modal
+
+![Login Register Modal](./screenshots/auth-modal.png)
+
+---
+
+## Mobile Responsive Design
+
+![Mobile Responsive Design](./screenshots/mobile.png)
