@@ -1,0 +1,49 @@
+<div class="success-page" *ngIf="cartServices.checkoutSuccess() as order">
+  <div class="success-card">
+    <div class="success-icon">
+      <i class="bi bi-check2"></i>
+    </div>
+
+    <h1>Order Complete</h1>
+
+    <p class="success-message">
+      Thank you, {{ order.name }}. Your order has been placed successfully.
+    </p>
+
+    <div class="success-summary">
+      <div>
+        <span>Items</span>
+        <strong>{{ order.total_quantity }}</strong>
+      </div>
+
+      <div>
+        <span>Total</span>
+        <strong>${{ order.total_price.toFixed(2) }}</strong>
+      </div>
+    </div>
+
+    <div class="shipping-info">
+      <h3>Shipping Details</h3>
+
+      <div class="shipping-row">
+        <i class="bi bi-geo-alt-fill"></i>
+        <div>
+          <span>Ship to</span>
+          <strong>{{ order.address }}</strong>
+        </div>
+      </div>
+
+      <div class="shipping-row">
+        <i class="bi bi-truck"></i>
+        <div>
+          <span>Estimated delivery</span>
+          <strong>Within 3 days</strong>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn success-btn" (click)="backToProducts()">
+      Back to Products
+    </button>
+  </div>
+</div>

@@ -38,6 +38,13 @@ export interface OrderProduct {
   description?: string | null;
 };
 
+export interface CheckoutSuccess {
+  name: string;
+  address: string;
+  total_price: number;
+  total_quantity: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -48,6 +55,7 @@ export class CartServices {
   items = computed(() => this.cart()?.items ?? []);
   TotalQuantity = computed(() => this.cart()?.total_quantity ?? 0);
   TotalPrice = computed(() => this.cart()?.total_price ?? 0);
+  checkoutSuccess = signal<CheckoutSuccess | null>(null);
 
   constructor(private http: HttpClient, private authService: Auth) {
     this.loadCart();
@@ -143,7 +151,7 @@ export class CartServices {
   }
 
   checkoutCart(): Observable<CartResponse> {
-    return this.http.post<CartResponse>(`${this.apiUrl}/${this.cart()?.id}/checkout`, {}, this.authService.getAuthHeaders()).pipe(
+    return this.http.patch<CartResponse>(`${this.apiUrl}/${this.cart()?.id}/checkout`, {}, this.authService.getAuthHeaders()).pipe(
       tap(() => {
         this.clearCartState();
       })
@@ -152,6 +160,14 @@ export class CartServices {
 
   clearCartState(): void {
     this.cart.set(null);
+  }
+
+  setCheckoutSuccess(name: string, address: string, total_price: number, total_quantity: number): void {
+    this.checkoutSuccess.set({ name, address, total_price, total_quantity });
+  }
+
+  clearCheckoutSuccess(): void {
+    this.checkoutSuccess.set(null);
   }
 
   getProductQuantity(productId: number): number {

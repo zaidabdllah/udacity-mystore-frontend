@@ -11,10 +11,22 @@ import { provideHttpClient } from '@angular/common/http';
 import { ProductList } from './components/product-list/product-list';
 import { ProductCard } from './components/product-card/product-card';
 import { ProductDetails } from './components/product-details/product-details';
+import { Cart } from './components/cart/cart';
 import { AddToCart } from './components/add-to-cart/add-to-cart';
+import { Success } from './components/success/success';
 
 @NgModule({
-  declarations: [App, Navbar, AuthModal, ProductList, ProductCard, ProductDetails, AddToCart],
+  declarations: [
+    App,
+    Navbar,
+    AuthModal,
+    ProductList,
+    ProductCard,
+    ProductDetails,
+    Cart,
+    AddToCart,
+    Success,
+  ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
   providers: [
     provideBrowserGlobalErrorListeners(),
