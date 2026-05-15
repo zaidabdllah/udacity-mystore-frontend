@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Product, ProductShape, ProductResponse } from '../../services/product';
 import { ActivatedRoute } from '@angular/router';
+import { Toast } from '../../services/toast';
 
 @Component({
   selector: 'app-product-details',
@@ -14,7 +15,7 @@ export class ProductDetails implements OnInit {
   isLoading = signal(false);
   errorMessage = signal<string | null>(null);
 
-constructor(private route: ActivatedRoute, private productService: Product) { }
+constructor(private route: ActivatedRoute, private productService: Product, private toast: Toast) { }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -31,6 +32,11 @@ constructor(private route: ActivatedRoute, private productService: Product) { }
         this.isLoading.set(false);
       }
     });
+  }
+
+  onQuantityChanged(quantity: number): void {
+    const message = quantity ? `${this.product?.name} quantity: ${quantity}` : `${this.product?.name} removed`;
+    this.toast.show(message);
   }
 
 }

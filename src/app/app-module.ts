@@ -11,9 +11,10 @@ import { provideHttpClient } from '@angular/common/http';
 import { ProductList } from './components/product-list/product-list';
 import { ProductCard } from './components/product-card/product-card';
 import { ProductDetails } from './components/product-details/product-details';
+import { AddToCart } from './components/add-to-cart/add-to-cart';
 
 @NgModule({
-  declarations: [App, Navbar, AuthModal, ProductList, ProductCard, ProductDetails],
+  declarations: [App, Navbar, AuthModal, ProductList, ProductCard, ProductDetails, AddToCart],
   imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
   providers: [
     provideBrowserGlobalErrorListeners(),

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ProductShape } from '../../services/product';
+import { Toast } from '../../services/toast';
 
 @Component({
   selector: 'app-product-card',
@@ -9,4 +10,11 @@ import { ProductShape } from '../../services/product';
 })
 export class ProductCard {
   @Input() product!: ProductShape;
+
+  constructor(private toast: Toast) {}
+
+  onQuantityChanged(quantity: number): void {
+    const message = quantity ? `${this.product.name} quantity: ${quantity}` : `${this.product.name} removed`;
+    this.toast.show(message);
+  }
 }

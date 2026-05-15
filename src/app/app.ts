@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { Toast } from './services/toast';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,6 @@ import { Component, signal } from '@angular/core';
 })
 export class App {
   protected readonly title = signal('udacity-mystore-frontend');
+
+  constructor(public toast: Toast) {}
 }

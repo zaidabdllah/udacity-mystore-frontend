@@ -1,0 +1,59 @@
+<button
+  *ngIf="quantity === 0; else quantityControl"
+  type="button"
+  class="cart-action add-state"
+  [disabled]="isSaving"
+  (click)="addOne()"
+>
+  <i class="bi bi-cart-plus"></i>
+  <span>Add to Cart</span>
+</button>
+
+<ng-template #quantityControl>
+  <div class="cart-action quantity-state" [class.is-saving]="isSaving">
+    <button
+      type="button"
+      class="side-action"
+      [disabled]="isSaving"
+      (click)="removeOne()"
+      [attr.aria-label]="quantity === 1 ? 'Remove from cart' : 'Decrease quantity'"
+    >
+      <i class="bi" [ngClass]="quantity === 1 ? 'bi-trash3' : 'bi-dash-lg'"></i>
+    </button>
+
+    <div class="dropdown quantity-dropdown">
+      <button
+        type="button"
+        class="quantity-number dropdown-toggle"
+        data-bs-toggle="dropdown"
+        [disabled]="isSaving"
+        [class.bump]="isAnimating"
+      >
+        {{ quantity }}
+      </button>
+
+      <ul class="dropdown-menu quantity-menu">
+        <li *ngFor="let option of quantityOptions">
+          <button
+            type="button"
+            class="dropdown-item quantity-option"
+            [class.active]="quantity === option"
+            (click)="setQuantity(option)"
+          >
+            {{ option }}
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <button
+      type="button"
+      class="side-action"
+      [disabled]="isSaving"
+      (click)="addOne()"
+      aria-label="Increase quantity"
+    >
+      <i class="bi bi-plus-lg"></i>
+    </button>
+  </div>
+</ng-template>

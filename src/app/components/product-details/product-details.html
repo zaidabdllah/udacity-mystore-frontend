@@ -29,9 +29,10 @@
         {{ product.description }}
       </p>
 
-      <button class="btn add-btn">
-        Add to Cart
-      </button>
+      <app-add-to-cart
+        [product]="product"
+        (quantityChanged)="onQuantityChanged($event)"
+      ></app-add-to-cart>
 
       <a routerLink="/" class="btn btn-outline-secondary ms-2">
         Back to Products

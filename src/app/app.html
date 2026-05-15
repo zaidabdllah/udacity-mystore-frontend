@@ -1,2 +1,10 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
+
+<div *ngIf="toast.message() as message" class="cart-toast" [class.toast-danger]="message.type === 'danger'">
+  <i class="bi" [ngClass]="message.type === 'danger' ? 'bi-exclamation-circle-fill' : 'bi-check-circle-fill'"></i>
+  <span>{{ message.text }}</span>
+  <button type="button" class="toast-close" aria-label="Close" (click)="toast.hide()">
+    <i class="bi bi-x-lg"></i>
+  </button>
+</div>

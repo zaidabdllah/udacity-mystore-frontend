@@ -15,8 +15,9 @@
   </a>
 
   <div class="px-3 pb-3 product-body">
-    <button class="btn add-btn">
-      Add to Cart
-    </button>
+    <app-add-to-cart
+      [product]="product"
+      (quantityChanged)="onQuantityChanged($event)"
+    ></app-add-to-cart>
   </div>
 </div>
