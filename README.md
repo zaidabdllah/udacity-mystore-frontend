@@ -53,15 +53,29 @@ This project was developed as part of the Udacity Frontend Nanodegree program.
 
 This frontend application depends on the following backend API project:
 
-[udacity-storefront-backend](https://github.com/zaidabdllah/udacity-storefront-backend?utm_source=chatgpt.com)
+[udacity-storefront-backend](https://github.com/zaidabdllah/udacity-storefront-backend)
 
-Please follow the backend repository setup instructions before running the frontend application.
+Please follow the backend repository setup instructions before running the frontend application. By default, this frontend expects the backend API to be running at:
+
+```text
+http://localhost:3000
+```
 
 The API base URL is configured inside the Angular environment files.
 
 ---
 
-# Installation
+# Getting Started
+
+## Prerequisites
+
+Make sure the following are installed before starting the project:
+
+* Node.js 20 or newer
+* npm 10 or newer
+* The backend API project running locally
+
+## Install Dependencies
 
 ```bash
 npm install
@@ -69,10 +83,10 @@ npm install
 
 ---
 
-# Run the Application
+## Run the Application
 
 ```bash
-ng serve
+npm start
 ```
 
 The application will run on:
@@ -88,14 +102,15 @@ http://localhost:4200
 The backend API URL is configured in:
 
 ```text
-src/environments/
+src/environments/environment.ts
 ```
 
 Example:
 
 ```ts
 export const environment = {
-  Backend_apiUrl: 'http://localhost:4000'
+  production: true,
+  Backend_apiUrl: 'http://localhost:3000'
 };
 ```
 
