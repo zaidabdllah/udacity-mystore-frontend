@@ -74,7 +74,8 @@
               required
               minlength="3"
               placeholder="(minimum 3 characters)"
-              [(ngModel)]="checkoutData.name"
+              [ngModel]="checkoutData.name"
+              (ngModelChange)="onCheckoutDataChange('name', $event)"
             >
           </div>
 
@@ -87,7 +88,8 @@
               required
               minlength="6"
               placeholder="(minimum 6 characters)"
-              [(ngModel)]="checkoutData.address"
+              [ngModel]="checkoutData.address"
+              (ngModelChange)="onCheckoutDataChange('address', $event)"
             >
           </div>
 
@@ -102,7 +104,8 @@
               maxlength="16"
               pattern="^[0-9]{16}$"
               placeholder="(16-digit number)"
-              [(ngModel)]="checkoutData.cardnumber"
+              [ngModel]="checkoutData.cardnumber"
+              (ngModelChange)="onCheckoutDataChange('cardnumber', $event)"
               (keypress)="onlyNumbers($event)"
             >
           </div>

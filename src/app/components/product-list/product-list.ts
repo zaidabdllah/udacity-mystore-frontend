@@ -1,5 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { ProductShape, Product } from '../../services/product';
+import { Toast } from '../../services/toast';
+import type { ProductQuantityChange } from '../product-card/product-card';
 
 @Component({
   selector: 'app-product-list',
@@ -12,7 +14,7 @@ export class ProductList implements OnInit {
   isLoading = signal(false);
   errorMessage = signal('');
 
-  constructor(private productService: Product) {}
+  constructor(private productService: Product, private toast: Toast) {}
 
   ngOnInit(): void {
     this.isLoading.set(true)
@@ -27,5 +29,13 @@ export class ProductList implements OnInit {
         this.isLoading.set(false)
       }
     });
+  }
+
+  onQuantityChanged(change: ProductQuantityChange): void {
+    const message = change.quantity
+      ? `${change.product.name} quantity: ${change.quantity}`
+      : `${change.product.name} removed`;
+
+    this.toast.show(message);
   }
 }

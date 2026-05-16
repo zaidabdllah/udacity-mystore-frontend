@@ -6,6 +6,12 @@ import { CartServices, OrderProduct } from '../../services/cart';
 import { ProductShape } from '../../services/product';
 import { Toast } from '../../services/toast';
 
+interface CheckoutData {
+  name: string;
+  address: string;
+  cardnumber: string;
+}
+
 @Component({
   selector: 'app-cart',
   standalone: false,
@@ -14,7 +20,7 @@ import { Toast } from '../../services/toast';
 })
 
 export class Cart implements OnInit {
-  checkoutData = {
+  checkoutData: CheckoutData = {
     name: '',
     address: '',
     cardnumber: '',
@@ -43,6 +49,10 @@ export class Cart implements OnInit {
     if (!/^[0-9]$/.test(event.key)) {
       event.preventDefault();
     }
+  }
+
+  onCheckoutDataChange(field: keyof CheckoutData, value: string): void {
+    this.checkoutData[field] = value;
   }
 
   getItemTotal(item: OrderProduct): number {

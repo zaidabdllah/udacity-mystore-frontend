@@ -1,6 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductShape } from '../../services/product';
-import { Toast } from '../../services/toast';
+
+export interface ProductQuantityChange {
+  product: ProductShape;
+  quantity: number;
+}
 
 @Component({
   selector: 'app-product-card',
@@ -10,11 +14,12 @@ import { Toast } from '../../services/toast';
 })
 export class ProductCard {
   @Input() product!: ProductShape;
-
-  constructor(private toast: Toast) {}
+  @Output() quantityChanged = new EventEmitter<ProductQuantityChange>();
 
   onQuantityChanged(quantity: number): void {
-    const message = quantity ? `${this.product.name} quantity: ${quantity}` : `${this.product.name} removed`;
-    this.toast.show(message);
+    this.quantityChanged.emit({
+      product: this.product,
+      quantity
+    });
   }
 }
